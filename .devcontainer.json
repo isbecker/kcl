@@ -7,7 +7,7 @@
       ]
     }
   },
-  "image": "docker.io/nixpkgs/nix-flakes:nixos-24.05",
+  "image": "ghcr.io/zombiezen/codespaces-nix",
   "overrideCommand": false,
   "updateContentCommand": "nix develop --no-pure-eval --accept-flake-config"
 }
