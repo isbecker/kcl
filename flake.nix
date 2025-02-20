@@ -29,7 +29,7 @@
               abort "${system} is invalid";
           sha256 =
             if system == "x86_64-linux" then
-            "1gs354s0nd60qhcwwq3vmw21n45gy09bvsmz3a6k0b0ldrps1zr6" # v0.11.1
+              "1gs354s0nd60qhcwwq3vmw21n45gy09bvsmz3a6k0b0ldrps1zr6" # v0.11.1
             # "0304qlz8nn0077b7pw798v1nvcpxb671fzd4sijpkn7llvk1nw33" # v0.11.0
             # "13g3xq35by8z0bbivfn5k9hid1bl8nawp0zvyqfqjyifx7pxhn08" # v0.10.8
             else if system == "arm64-macos" then
@@ -76,20 +76,6 @@
                 ${lib.getExe' pkgs.figlet "figlet"} -f banner3 ${name} | ${lib.getExe pkgs.dotacat}
               '';
               devcontainer.enable = true;
-
-              pre-commit.hooks = {
-                treefmt = {
-                  enable = true;
-                  package = pkgs.treefmt2;
-                  settings = {
-                    formatters = with pkgs; [
-                      nixpkgs-fmt
-                      mdformat
-                      taplo
-                    ];
-                  };
-                };
-              };
 
               packages = with pkgs; [
                 config.packages.default
