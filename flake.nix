@@ -57,9 +57,6 @@
             git
             kcl
             just
-            kustomize
-            kubernetes-helm
-            crossplane-cli
             treefmt2
           ];
 
@@ -78,11 +75,9 @@
 
               packages = with pkgs; [
                 config.packages.default
-                kcl-ls
-                process-compose
-
-                kubectl
-                argocd
+                nix-direnv
+                nil # nix ls
+                kcl-ls # the package we made up above
               ] ++ buildDeps;
             };
           };

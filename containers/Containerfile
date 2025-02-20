@@ -44,8 +44,9 @@ USER ${USER}
 # set Nix bin directory to PATH
 ENV PATH="${PATH}:/nix/var/nix/profiles/default/bin"
 
-RUN nix profile install nixpkgs#nix-direnv
-RUN mkdir -p /home/${USER}/.config/direnv && \
-    echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" > /home/${USER}/.config/direnv/direnvrc
+RUN nix profile install nixpkgs#nix-direnv && \
+    mkdir -p /home/${USER}/.config/direnv && \
+    echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" > /home/${USER}/.config/direnv/direnvrc && \
+    echo "eval '$(direnv hook bash)'" > /home/${USER}/.bashrc
 
 ENTRYPOINT [ "/bin/bash" ]
