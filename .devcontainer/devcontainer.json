@@ -2,7 +2,7 @@
   "name": "kcl-dev",
   "remoteUser": "runner",
   "containerUser": "runner",
-  "postAttachCommand": "nix profile install nixpkgs#nix-direnv && sudo chown -R 100001:101000 /workspaces/ && nix develop --impure --command direnv allow",
+  "postAttachCommand": "sudo chown -R 100001:101000 /workspaces/ && nix develop --impure --command direnv allow",
   "build": {
     "dockerfile": "./containers/Containerfile",
     "context": ".."
