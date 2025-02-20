@@ -1,7 +1,10 @@
 {
-  "name": "nixpod-dev",
+  "name": "kcl-dev",
+  "remoteUser": "runner",
+  "containerUser": "runner",
+  "postAttachCommand": "sudo chown -R 100001:101000 /workspaces/ && nix develop --impure --command direnv allow",
   "build": {
-    "dockerfile": "../containers/Containerfile",
+    "dockerfile": "./containers/Containerfile",
     "context": ".."
   },
   "customizations": {
