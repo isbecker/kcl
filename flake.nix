@@ -75,7 +75,6 @@
               enterShell = ''
                 ${lib.getExe' pkgs.figlet "figlet"} -f banner3 ${name} | ${lib.getExe pkgs.dotacat}
               '';
-              devcontainer.enable = true;
 
               packages = with pkgs; [
                 config.packages.default

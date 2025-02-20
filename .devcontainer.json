@@ -2,11 +2,12 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "mkhl.direnv"
+        "mkhl.direnv",
+        "kcl.kcl-vscode-extension"
       ]
     }
   },
-  "image": "ghcr.io/cachix/devenv:latest",
+  "image": "docker.io/nixpkgs/nix-flakes:nixos-24.05",
   "overrideCommand": false,
   "updateContentCommand": "devenv test"
 }
