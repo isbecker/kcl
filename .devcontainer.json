@@ -9,5 +9,5 @@
   },
   "image": "docker.io/nixpkgs/nix-flakes:nixos-24.05",
   "overrideCommand": false,
-  "updateContentCommand": "devenv test"
+  "updateContentCommand": "nix develop --no-pure-eval --accept-flake-config"
 }
