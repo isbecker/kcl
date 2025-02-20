@@ -1,0 +1,17 @@
+{
+  "name": "nixpod-dev",
+  "build": {
+    "dockerfile": "../containers/Containerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "jnoortheen.nix-ide",
+        "arrterian.nix-env-selector",
+        "mkhl.direnv",
+        "kcl.kcl-vscode-extension"
+      ]
+    }
+  }
+}
