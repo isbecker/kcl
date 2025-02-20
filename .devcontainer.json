@@ -9,5 +9,5 @@
   },
   "image": "ghcr.io/zombiezen/codespaces-nix",
   "overrideCommand": false,
-  "updateContentCommand": "nix develop --no-pure-eval --accept-flake-config"
+  "updateContentCommand": "nix develop --extra-experimental-features nix-command --extra-experimental-features flakes --no-pure-eval --accept-flake-config"
 }
