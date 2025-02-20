@@ -1,0 +1,42 @@
+# Global options
+fail-on-change          = false
+allow-missing-formatter = true
+on-unmatched            = "info"
+tree-root-file          = ".git/config"
+walk                    = "git"
+verbose                 = 0             # 0 = warn, 1 = info, 2 = debug
+
+[formatter.kcl]
+command  = "kcl"
+options  = ["fmt"]
+includes = ["*.k"]
+
+[formatter.markdown]
+command  = "mdformat"
+includes = ["*.md"]
+
+[formatter.toml]
+command  = "taplo"
+options  = ["fmt", "--option", "align_entries=true"]
+includes = ["*.toml"]
+
+[formatter.yaml]
+command = "yamlfmt"
+options = [
+  "-formatter",
+  "scan_folded_as_literal=true",
+  "-formatter",
+  "retain_line_breaks=true",
+  "-formatter",
+  "indentless_arrays=true",
+  "-formatter",
+  "pad_line_comments=2",
+  "-formatter",
+  "indent=2",
+]
+includes = ["*.yaml", "*.yml"]
+excludes = ["**/.terraform", "**templates/**"]
+
+[formatter.nix]
+command  = "nixpkgs-fmt"
+includes = ["*.nix"]
