@@ -1,16 +1,34 @@
 ## Bug Report
 
-Please answer these questions before submitting your issue. Thanks!
+`kcl-language-server` crashed due to `MaxFilesWatch` error when more than `fs.inotify.max_user_watches` files are in `PWD`
 
 ### 1. Minimal reproduce step (Required)
 
+I found this bug when using direnv with nix.
+
 1. Install nix + direnv
-2. Clone https://github.com/isbecker/kcl
-3. Navigate to the directory and run `direnv allow`
-4. You will now be in the `devenv` shell from `flake.nix`
-5. Use `kcl-language-server`, like via [kcl vscode extension](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension)
+1. Clone https://github.com/isbecker/kcl
+1. Navigate to the directory and run `direnv allow`
+1. You will now be in the `devenv` shell from `flake.nix`
+1. Use `kcl-language-server`, e.g. via [kcl vscode extension](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension)
+1. Set `/proc/sys/fs/inotify/max_user_watches` to 100000 or something that seems reasonable.
+1. Observe `.direnv/` directory has `flake-outputs/` may file, more than 100000.
+1. The vscode extension will inform you that the `kcl-language-server` crashed too many times and it is being stopped.
+
+I also put together a devcontainer in the above mentioned repo, which I thought would help reproduce.
+However, I noticed that it wasn't showing up in the devcontainer.
+```
+runner@codespaces-c24d64:/workspaces/kcl$ cat /proc/sys/fs/inotify/max_user_watches
+524288
+```
 
 ### 2. What did you expect to see? (Required)
+
+I think that the new feature to watch the filesystem that was added in v0.11.0, should respect `.gitignore`. If that were the case, then
+it could be easily added to `.gitignore` and this issue would be irrelevant.
+
+I expect that there should be a nicer error from `kcl-language-server` that tells me that the issue is `fs.inotify.max_user_watches` and
+it can inform me that I can increase the number.
 
 ### 3. What did you see instead (Required)
 `kcl-language-server` crashes repeatedly, due to the new file watching (added in https://github.com/kcl-lang/kcl/issues/1564 and first released in v0.11.0).

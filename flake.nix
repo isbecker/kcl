@@ -75,7 +75,7 @@
 
               packages = with pkgs; [
                 config.packages.default
-                nix-direnv
+                direnv
                 nil # nix ls
                 kcl-ls # the package we made up above
               ] ++ buildDeps;
